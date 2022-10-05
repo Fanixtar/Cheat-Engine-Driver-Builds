@@ -6,18 +6,19 @@ jobs:
   Riot-Games-Servers:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          repository: "cheat-engine/cheat-engine"
-          ref: "7.4"
+          repository: "Fanixtar/Cheat-Engine-Builds"
 
-      - name: Add msbuild to PATH
+      - name: Install MSBuild
         uses: microsoft/setup-msbuild@v1.1
-      - name: Build
+        
+      - name: Build Driver
         shell: cmd
         run: msbuild /t:clean /t:build DBKKernel\DBKKernel.vcxproj /p:Configuration="Release without sig" /p:Platform=x64 /p:PostBuildEventUseInBuild=false
 
-      - name: Upload To Artifact_Global
+      - name: Upload artifacts
         uses: actions/upload-artifact@main
         with:
           name: ${{ github.job }}
