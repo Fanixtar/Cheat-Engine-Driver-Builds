@@ -3,7 +3,7 @@ name: Driver (HOYOVERSE)
 on: workflow_dispatch
 
 jobs:
-  Riot-Games-Servers:
+  Driver:
     runs-on: windows-2019
     steps:
       - name: Checkout
